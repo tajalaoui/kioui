@@ -1,5 +1,5 @@
 import axios from "axios"
-import { getToken } from "../helpers/token.helper"
+import { getToken } from "@helpers/token.helper"
 
 const config = {
   baseURL: "http://localhost:3000/api",

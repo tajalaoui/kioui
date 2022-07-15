@@ -1,4 +1,4 @@
-import axios from "./axios.service"
+import axios from "@services/axios.service"
 
 export async function registerService(userData) {
   const response = await axios.post("/auth/register", userData)

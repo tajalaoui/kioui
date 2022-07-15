@@ -1,8 +1,8 @@
 <script setup>
 import { onMounted, computed, ref, nextTick, watchEffect } from "vue"
-import { useUserStore } from "../store/user.store"
+import { useUserStore } from "@store/user.store"
 import moment from "moment"
-import { commentService, likeService } from "../services/post.service"
+import { commentService, likeService } from "@services/post.service"
 
 const userStore = useUserStore()
 

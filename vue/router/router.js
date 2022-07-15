@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router"
-import { getToken, verifyToken } from "../helpers/token.helper"
-import { useUserStore } from "../store/user.store"
+import { getToken, verifyToken } from "@helpers/token.helper"
+import { useUserStore } from "@store/user.store"
 
 const routes = [
   {

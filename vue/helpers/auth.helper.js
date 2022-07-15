@@ -1,4 +1,4 @@
-import { setToken } from "./token.helper"
+import { setToken } from "@helpers/token.helper"
 
 export function register(payload) {
   setToken(payload)

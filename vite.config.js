@@ -10,14 +10,15 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./vue"),
-      "@assets": path.resolve(__dirname, ""),
+      "@": path.resolve(__dirname, "./"),
+      "@assets": path.resolve(__dirname, "./vue/assets"),
       "@components": path.resolve(__dirname, "./vue/components"),
-      "@helpers": path.resolve(__dirname, ""),
-      "@router": path.resolve(__dirname, ""),
-      "@services": path.resolve(__dirname, ""),
-      "@store": path.resolve(__dirname, ""),
-      "@public": path.resolve(__dirname, ""),
+      "@helpers": path.resolve(__dirname, "./vue/helpers"),
+      "@composables": path.resolve(__dirname, "./vue/composables"),
+      "@router": path.resolve(__dirname, "./vue/router"),
+      "@services": path.resolve(__dirname, "./vue/services"),
+      "@store": path.resolve(__dirname, "./vue/store"),
+      "@public": path.resolve(__dirname, "./public"),
     },
   },
 })

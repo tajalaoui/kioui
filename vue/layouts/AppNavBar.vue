@@ -1,6 +1,6 @@
 <script setup>
 import { useRouter } from "vue-router"
-import { logout } from "../helpers/auth.helper"
+import { logout } from "@helpers/auth.helper"
 
 const router = useRouter()
 

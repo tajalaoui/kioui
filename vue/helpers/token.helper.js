@@ -1,4 +1,4 @@
-import axios from "../services/axios.service"
+import axios from "@services/axios.service"
 
 export function getToken() {
   return localStorage.getItem("token")

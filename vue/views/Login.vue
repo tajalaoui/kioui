@@ -1,9 +1,9 @@
 <script setup>
 import { reactive } from "vue"
 import { useRouter } from "vue-router"
-import { useUserStore } from "./../store/user.store"
-import { setToken } from "../helpers/token.helper"
-import { loginService } from "../services/auth.service"
+import { useUserStore } from "@store/user.store"
+import { setToken } from "@helpers/token.helper"
+import { loginService } from "@services/auth.service"
 
 const router = useRouter()
 const userStore = useUserStore()
