@@ -43,10 +43,10 @@ async function createPost() {
 </script>
 
 <template>
-  <div class="is-inline-block add-post my-3">
-    <span class="material-icons has-text-primary" @click="isCreatePost = !isCreatePost">
-      post_add
-    </span>
+  <div class="add-post my-3">
+    <button class="button is-primary">
+      <span class="material-icons" @click="isCreatePost = !isCreatePost"> post_add </span>
+    </button>
   </div>
 
   <div v-if="isCreatePost" class="my-5">
