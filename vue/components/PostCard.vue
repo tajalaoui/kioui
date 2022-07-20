@@ -70,8 +70,8 @@ const getCurrentDate = computed(() => {
       <div class="card-content">
         <div class="media">
           <div class="media-left">
-            <figure class="image is-48x48">
-              <img class="image has-text-left" id="avatar" src="/avatar.svg" alt="avatar" />
+            <figure class="image ml-auto is-48x48">
+              <img class="image" id="avatar" src="/avatar.svg" alt="avatar" />
             </figure>
           </div>
         </div>
@@ -94,10 +94,10 @@ const getCurrentDate = computed(() => {
           ></p>
           <p class="subtitle has-text-left">
             Posted by
-            <router-link :to="{ name: 'Profile', params: { id: post.user.username } }"
-              ><span class="has-text-primary" id="username">@{{
-                post.user.username
-              }}</span></router-link
+            <router-link :to="{ name: 'Profile', params: { id: post.user._id } }"
+              ><span class="has-text-primary" id="username"
+                >@{{ post.user.username }}</span
+              ></router-link
             >
             {{ getCurrentDate }}
           </p>

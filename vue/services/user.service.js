@@ -1,11 +1,15 @@
 import axios from "@services/axios.service"
 
-export async function getUsersService() {
-  return await axios.get("/user")
-}
-
 export async function getUserService(id) {
-  return await axios.get(`/user`, { params: { id } })
+  let response
+
+  if (!id) {
+    response = await axios.get("/user")
+    return response.data
+  }
+
+  response = await axios.get("/user", { params: { id } })
+  return response.data
 }
 
 export async function updateUserService(id, data) {
