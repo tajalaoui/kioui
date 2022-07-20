@@ -92,9 +92,9 @@ const getCurrentDate = computed(() => {
             class="has-text-primary view-more"
             v-show="post.content.length >= postCharLimit"
           ></p>
-          <p class="subtitle has-text-left">
+          <p class="subtitle is-6 has-text-left">
             Posted by
-            <router-link :to="{ name: 'Profile', params: { id: post.user._id } }"
+            <router-link class="m-0" :to="{ name: 'Profile', params: { id: post.user._id } }"
               ><span class="has-text-primary" id="username"
                 >@{{ post.user.username }}</span
               ></router-link

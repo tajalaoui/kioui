@@ -66,7 +66,7 @@ async function createPost() {
         autofocus
       ></textarea>
       <textarea v-model="postContent" class="textarea" placeholder="Enter your post"></textarea>
-      <button class="button mt-3" type="submit">Submit</button>
+      <button class="button has-text-primary mt-3" type="submit">Submit</button>
     </form>
   </div>
 

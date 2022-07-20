@@ -13,7 +13,7 @@ function onLogout() {
 </script>
 
 <template>
-  <nav class="navbar-end">
+  <nav class="navbar navbar-end">
     <router-link to="/">Feed</router-link>
     <!-- <router-link to="/">Profile</router-link> -->
     <router-link :to="{ name: 'Profile', params: { id: userStore.id } }">Profile</router-link>
