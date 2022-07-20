@@ -13,6 +13,7 @@ function onLogout() {
 <template>
   <nav class="navbar-end">
     <router-link to="/">Feed</router-link>
+    <router-link to="/podcast">Podcast</router-link>
     <router-link to="/">Profile</router-link>
     <a @click="onLogout">Logout</a>
   </nav>

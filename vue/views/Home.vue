@@ -20,6 +20,7 @@ async function getPosts() {
 const userStore = useUserStore()
 let posts = ref()
 const isCreatePost = ref(false)
+const postTitle = ref("")
 const postContent = ref("")
 
 async function handleInputBlurAutofocus() {
@@ -28,13 +29,19 @@ async function handleInputBlurAutofocus() {
   }
 }
 
+async function openCreatePostModal() {
+  isCreatePost.value = !isCreatePost.value
+  handleInputBlurAutofocus()
+}
+
 async function createPost() {
   try {
-    const postBlueprint = { id: userStore.id, content: postContent.value }
+    const postBlueprint = { id: userStore.id, title: postTitle.value, content: postContent.value }
     const post = await createPostService(postBlueprint)
     const newlyCreatedPost = await getPostService(post._id)
     posts.value.unshift(newlyCreatedPost)
     isCreatePost.value = false
+    postTitle.value = ""
     postContent.value = ""
   } catch (e) {
     console.log(e)
@@ -45,18 +52,20 @@ async function createPost() {
 <template>
   <div class="add-post my-3">
     <button class="button is-primary">
-      <span class="material-icons" @click="isCreatePost = !isCreatePost"> post_add </span>
+      <span class="material-icons" @click="openCreatePostModal"> post_add </span>
     </button>
   </div>
 
   <div v-if="isCreatePost" class="my-5">
     <form @submit.prevent="createPost">
       <textarea
-        v-model="postContent"
-        class="textarea"
-        placeholder="Enter your post"
+        v-model="postTitle"
+        class="input"
+        placeholder="Title"
+        type="text"
         autofocus
       ></textarea>
+      <textarea v-model="postContent" class="textarea" placeholder="Enter your post"></textarea>
       <button class="button mt-3" type="submit">Submit</button>
     </form>
   </div>

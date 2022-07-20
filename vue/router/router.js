@@ -7,7 +7,7 @@ const routes = [
     path: "/",
     name: "Home",
     components: {
-      default: () => import("../views/Home.vue"),
+      default: () => import("@views/Home.vue"),
       AppNavBar: () => import("../layouts/AppNavBar.vue"),
     },
     meta: { requiresAuth: true },
@@ -16,7 +16,7 @@ const routes = [
     path: "/profile/:id",
     name: "Profile",
     components: {
-      default: () => import("../views/Profile.vue"),
+      default: () => import("@views/Profile.vue"),
       AppNavBar: () => import("../layouts/AppNavBar.vue"),
     },
     meta: { requiresAuth: true },
@@ -24,12 +24,12 @@ const routes = [
   {
     path: "/register",
     name: "Register",
-    component: () => import("../views/Register.vue"),
+    component: () => import("@views/Register.vue"),
   },
   {
     path: "/login",
     name: "Login",
-    component: () => import("../views/Login.vue"),
+    component: () => import("@views/Login.vue"),
   },
 ]
 

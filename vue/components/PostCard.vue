@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, computed, ref, nextTick, watchEffect } from "vue"
+import { computed, ref, nextTick, watchEffect } from "vue"
 import { useUserStore } from "@store/user.store"
 import moment from "moment"
 import { commentService, likeService } from "@services/post.service"
@@ -68,25 +68,40 @@ const getCurrentDate = computed(() => {
   <div>
     <div class="card my-5">
       <div class="card-content">
-        <p class="title has-text-left" :class="{ postContent: !isViewMore }">
-          {{ post.content }}
-        </p>
-        <p
-          v-html="isViewMore ? 'view less' : 'view more'"
-          text
-          @click="viewMore"
-          class="has-text-primary view-more"
-          v-show="post.content.length >= postCharLimit"
-        ></p>
-        <p class="subtitle has-text-left">
-          Posted by
-          <router-link :to="{ name: 'Profile', params: { id: post.user.username } }"
-            ><span class="has-text-primary" id="username">{{
-              post.user.username
-            }}</span></router-link
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <img class="image has-text-left" id="avatar" src="/avatar.svg" alt="avatar" />
+            </figure>
+          </div>
+        </div>
+        <div class="content">
+          <p class="title has-text-left has-text-weight-bold">
+            {{ post.title }}
+          </p>
+          <p
+            class="has-text-left is-size-5 has-text-weight-medium"
+            :class="{ postContent: !isViewMore }"
           >
-          {{ getCurrentDate }}
-        </p>
+            {{ post.content }}
+          </p>
+          <p
+            v-html="isViewMore ? 'view less' : 'view more'"
+            text
+            @click="viewMore"
+            class="has-text-primary view-more"
+            v-show="post.content.length >= postCharLimit"
+          ></p>
+          <p class="subtitle has-text-left">
+            Posted by
+            <router-link :to="{ name: 'Profile', params: { id: post.user.username } }"
+              ><span class="has-text-primary" id="username">@{{
+                post.user.username
+              }}</span></router-link
+            >
+            {{ getCurrentDate }}
+          </p>
+        </div>
       </div>
       <footer class="card-footer">
         <a class="card-footer-item" @click="postLike"

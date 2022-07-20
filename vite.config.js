@@ -19,6 +19,7 @@ export default defineConfig({
       "@services": path.resolve(__dirname, "./vue/services"),
       "@store": path.resolve(__dirname, "./vue/store"),
       "@public": path.resolve(__dirname, "./public"),
+      "@views": path.resolve(__dirname, "./vue/views"),
     },
   },
 })
