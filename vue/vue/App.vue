@@ -69,6 +69,10 @@ nav {
   margin-bottom: 7%;
 }
 
+.router-link-exact-active {
+  color: #00d1b2;
+}
+
 a {
   color: #000000;
   margin: 0 1%;
