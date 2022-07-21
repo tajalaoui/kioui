@@ -8,31 +8,13 @@ onMounted(async () => {
   await getPosts()
 })
 
-async function getPosts() {
-  const response = await getPostService()
-  posts.value = response
-
-  setTimeout(async () => {
-    await getPosts()
-  }, 5000)
-}
-
 const userStore = useUserStore()
+
+// Post
 let posts = ref()
-const isCreatePost = ref(false)
 const postTitle = ref("")
 const postContent = ref("")
-
-async function handleInputBlurAutofocus() {
-  if (document.activeElement instanceof HTMLElement) {
-    document.activeElement.blur()
-  }
-}
-
-async function openCreatePostModal() {
-  isCreatePost.value = !isCreatePost.value
-  handleInputBlurAutofocus()
-}
+const isCreatePost = ref(false)
 
 async function createPost() {
   try {
@@ -46,6 +28,27 @@ async function createPost() {
   } catch (e) {
     console.log(e)
   }
+}
+
+// Autofocus
+async function handleInputBlurAutofocus() {
+  if (document.activeElement instanceof HTMLElement) {
+    document.activeElement.blur()
+  }
+}
+
+async function openCreatePostModal() {
+  isCreatePost.value = !isCreatePost.value
+  handleInputBlurAutofocus()
+}
+
+async function getPosts() {
+  const response = await getPostService()
+  posts.value = response
+
+  setTimeout(async () => {
+    await getPosts()
+  }, 5000)
 }
 </script>
 
