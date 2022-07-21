@@ -1,39 +1,19 @@
 <script setup>
-import { computed, ref, nextTick, watchEffect } from "vue"
+import { ref, nextTick, watchEffect } from "vue"
 import { useUserStore } from "@store/user.store"
 import moment from "moment"
 import { commentService, likeService } from "@services/post.service"
 
 const userStore = useUserStore()
-
 const emit = defineEmits(["inputBlurAutofocus"])
-// const props = defineProps({ post: String })
 const props = defineProps(["post"])
 
-const postCharLimit = ref(211)
-
-let commentInput = ref("")
-let comments = ref([...props.post.comments])
 const userId = userStore.$state.id
 const postId = props.post._id
+
+// Like
 let isLiked = ref(false)
 let postLikesCount = ref(props.post.likedBy.length)
-
-// To update likes and comments live
-watchEffect(async () => {
-  const fromParentLikes = props.post.likedBy.length
-  postLikesCount.value = fromParentLikes
-
-  const fromParentComments = [...props.post.comments]
-  comments.value = fromParentComments
-})
-
-async function postComment() {
-  const commentBlueprint = { userId, postId, content: commentInput.value }
-  const commentData = await commentService(commentBlueprint)
-  comments.value.unshift(commentData)
-  commentInput.value = ""
-}
 
 async function postLike() {
   const likeBlueprint = { userId, postId }
@@ -42,6 +22,19 @@ async function postLike() {
   postLikesCount.value = likeData.likesCount
 }
 
+// Comment
+let commentInput = ref("")
+let comments = ref([...props.post.comments])
+
+async function postComment() {
+  const commentBlueprint = { userId, postId, content: commentInput.value }
+  const commentData = await commentService(commentBlueprint)
+  comments.value.unshift(commentData)
+  commentInput.value = ""
+}
+
+// Post behavior
+const postCharLimit = ref(211)
 const isShowTextArea = ref(false)
 let isViewMore = ref(false)
 
@@ -58,14 +51,19 @@ async function toggleAutoFocus() {
   if (isShowTextArea.value) textarea.value.focus()
 }
 
-const getCurrentDate = computed(() => {
-  const date = new Date(props.post.createdAt)
-  return moment(date, "YYYYMMDD").fromNow()
+// To update likes and comments live
+watchEffect(async () => {
+  const fromParentLikes = props.post.likedBy.length
+  postLikesCount.value = fromParentLikes
+
+  const fromParentComments = [...props.post.comments]
+  comments.value = fromParentComments
 })
 </script>
 
 <template>
   <div>
+    <!-- Post -->
     <div class="card my-5">
       <div class="card-content">
         <div class="media">
@@ -99,7 +97,7 @@ const getCurrentDate = computed(() => {
                 >@{{ post.user.username }}</span
               ></router-link
             >
-            {{ getCurrentDate }}
+            {{ moment(new Date(props.post.createdAt), "YYYYMMDD").fromNow() }}
           </p>
         </div>
       </div>
@@ -113,7 +111,7 @@ const getCurrentDate = computed(() => {
         >
       </footer>
     </div>
-    <!-- Comment section -->
+    <!-- Comment -->
     <div v-if="isShowTextArea">
       <div class="card mt-3" v-for="comment in comments" :key="comment._id">
         <div class="card-content">
