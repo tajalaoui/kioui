@@ -10,7 +10,7 @@ import User from "../db/models/user/user.doc"
 export async function createPost(user, title, content) {
   // return await Post.create({ content, user })
 
-  const post = new Post({title, content, user })
+  const post = new Post({ title, content, user })
   return await post.save()
 }
 

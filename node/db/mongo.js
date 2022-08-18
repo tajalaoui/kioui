@@ -9,7 +9,7 @@ export async function connectToMongo() {
   }
 
   try {
-    await mongoose.connect(mongoUri, options)
+    mongoose.connect(mongoUri, options)
     console.log("Connected to Database ✅")
   } catch (error) {
     console.error(error)
